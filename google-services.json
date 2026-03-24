@@ -1,0 +1,32 @@
+{
+  "_PLACEHOLDER_": "Thay file này bằng google-services.json thật từ Firebase Console",
+  "_INSTRUCTIONS_": [
+    "1. Vào https://console.firebase.google.com",
+    "2. Tạo project mới hoặc chọn project có sẵn",
+    "3. Thêm Android app với package name: com.yourcompany.myapp",
+    "4. Download google-services.json và thay thế file này",
+    "5. Làm tương tự với GoogleService-Info.plist cho iOS"
+  ],
+  "project_info": {
+    "project_number": "YOUR_PROJECT_NUMBER",
+    "project_id": "your-firebase-project-id",
+    "storage_bucket": "your-firebase-project-id.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:YOUR_PROJECT_NUMBER:android:YOUR_APP_ID",
+        "android_client_info": {
+          "package_name": "com.yourcompany.myapp"
+        }
+      },
+      "api_key": [{ "current_key": "YOUR_API_KEY" }],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
