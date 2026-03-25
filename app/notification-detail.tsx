@@ -6,12 +6,12 @@ import { useLocalSearchParams, useNavigation } from 'expo-router';
 import { useEffect } from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import { useColorScheme } from '@/hooks/useColorScheme';
-import { useNotifications } from '@/hooks/useNotifications';
+import { useNotificationContext } from '@/context/NotificationContext';
 
 export default function NotificationDetailScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
   const { colors } = useColorScheme();
-  const { notifications, markAsRead } = useNotifications();
+  const { notifications, markAsRead } = useNotificationContext();
   const navigation = useNavigation();
 
   // Tìm notification theo id

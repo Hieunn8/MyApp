@@ -4,7 +4,11 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import * as Notifications from 'expo-notifications';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { nanoid } from 'nanoid/non-secure';
+
+// Tạo ID ngẫu nhiên không cần thư viện ngoài (tránh vấn đề ESM với nanoid)
+function generateId(): string {
+  return Math.random().toString(36).slice(2) + Date.now().toString(36);
+}
 
 import {
   registerForPushNotificationsAsync,
@@ -106,7 +110,7 @@ export function useNotifications(): UseNotificationsReturn {
     received: Notifications.Notification
   ): Promise<void> {
     const newNotif: NotificationData = {
-      id: received.request.identifier || nanoid(),
+      id: received.request.identifier || generateId(),
       title: received.request.content.title ?? 'Thông báo',
       body: received.request.content.body ?? '',
       timestamp: Date.now(),

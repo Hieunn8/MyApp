@@ -12,7 +12,7 @@ import {
 import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import { useColorScheme } from '@/hooks/useColorScheme';
-import { useNotifications } from '@/hooks/useNotifications';
+import { useNotificationContext } from '@/context/NotificationContext';
 import { NotificationItem } from '@/components/NotificationItem';
 import { schedulePushNotification } from '@/services/notificationService';
 import type { NotificationData } from '@/types';
@@ -37,7 +37,7 @@ function EmptyState({ colors }: { colors: ReturnType<typeof useColorScheme>['col
 export default function NotificationsScreen() {
   const router = useRouter();
   const { colors } = useColorScheme();
-  const { notifications, unreadCount, markAsRead, clearAll } = useNotifications();
+  const { notifications, unreadCount, markAsRead, clearAll } = useNotificationContext();
 
   // Xử lý khi tap vào notification item
   function handleItemPress(item: NotificationData) {

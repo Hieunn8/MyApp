@@ -5,7 +5,7 @@ import { Tabs } from 'expo-router';
 import { Platform, View, Text, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useColorScheme } from '@/hooks/useColorScheme';
-import { useNotifications } from '@/hooks/useNotifications';
+import { useNotificationContext } from '@/context/NotificationContext';
 
 type IoniconsName = keyof typeof Ionicons.glyphMap;
 
@@ -42,7 +42,7 @@ function BadgeIcon({ name, color, size, count }: BadgeIconProps) {
 
 export default function TabLayout() {
   const { colors } = useColorScheme();
-  const { unreadCount } = useNotifications();
+  const { unreadCount } = useNotificationContext();
 
   return (
     <Tabs

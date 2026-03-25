@@ -9,12 +9,12 @@ import {
   Switch,
   TouchableOpacity,
   Alert,
-  Clipboard,
+  Share,
   Platform,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useColorScheme } from '@/hooks/useColorScheme';
-import { useNotifications } from '@/hooks/useNotifications';
+import { useNotificationContext } from '@/context/NotificationContext';
 import { Config } from '@/constants/Config';
 
 interface SettingRowProps {
@@ -96,16 +96,19 @@ export default function SettingsScreen() {
     toggleNotifications,
     clearAll,
     unreadCount,
-  } = useNotifications();
+  } = useNotificationContext();
 
-  // Copy FCM token vào clipboard
-  function handleCopyToken() {
+  // Chia sẻ FCM token (dùng Share API thay Clipboard vì Clipboard đã bị remove ở RN 0.73+)
+  async function handleCopyToken() {
     if (!expoPushToken) {
       Alert.alert('Chưa có token', 'Token chưa được đăng ký. Hãy cấp quyền thông báo trước.');
       return;
     }
-    Clipboard.setString(expoPushToken);
-    Alert.alert('Đã sao chép', 'Expo Push Token đã được sao chép vào clipboard.');
+    try {
+      await Share.share({ message: expoPushToken });
+    } catch {
+      Alert.alert('Token', expoPushToken);
+    }
   }
 
   // Xóa tất cả notifications

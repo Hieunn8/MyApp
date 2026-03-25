@@ -12,7 +12,7 @@ import { useState, useCallback } from 'react';
 import { HomeHeader } from '@/components/HomeHeader';
 import { MenuCard } from '@/components/MenuCard';
 import { useColorScheme } from '@/hooks/useColorScheme';
-import { useNotifications } from '@/hooks/useNotifications';
+import { useNotificationContext } from '@/context/NotificationContext';
 import type { MenuCardItem } from '@/types';
 
 // Danh sách menu cards trên màn hình home
@@ -69,7 +69,7 @@ const MENU_ITEMS: MenuCardItem[] = [
 
 export default function HomeScreen() {
   const { colors } = useColorScheme();
-  const { unreadCount } = useNotifications();
+  const { unreadCount } = useNotificationContext();
   const [refreshing, setRefreshing] = useState(false);
 
   // Xử lý pull-to-refresh
